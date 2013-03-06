@@ -15,7 +15,6 @@ BASE_CONFIG = (
     ConfigValue('config', 'config file to use.')
 )
 
-# TODO: make configurable
 def get_from_file(name, path=None):
     """get config value from config file."""
 
@@ -24,6 +23,8 @@ def get_from_file(name, path=None):
 
     if not hasattr(get_from_file, 'module'):
         path = os.path.expanduser(path)
+        if not os.path.exists(path):
+            return NotPresent
         with open(path) as f:
             get_from_file.module = imp.load_module(
                 'config',

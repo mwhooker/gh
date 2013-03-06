@@ -11,14 +11,18 @@ commands = {
 
 """
 TODO:
-    config file (DONE)
-        base_url
-        oauth token
-    base parser (DONE)
-        command
-        all env opts
-    allow options to be specified over args or env (DONE)
-
+    commands
+        notifications
+        issues
+            per repo
+            globally
+            assigned to me / open / etc.
+        followers
+        following
+        leaders
+        disciples
+        ls
+            ls [user|org|issues]?
 """
 
 if __name__ == '__main__':
