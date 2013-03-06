@@ -2,6 +2,7 @@ import argparse
 import sys
 
 import commands
+import ghconfig
 
 commands = {
     'ls': commands.ls
@@ -10,22 +11,30 @@ commands = {
 
 """
 TODO:
-    config file
+    config file (DONE)
         base_url
         oauth token
-    base parser
+    base parser (DONE)
         command
         all env opts
-    allow options to be specified over args or env
+    allow options to be specified over args or env (DONE)
+
 """
 
 if __name__ == '__main__':
+    parsers = {}
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--token')
+    ghconfig.add_config_to_parser(parser)
     subparsers = parser.add_subparsers(help='sub-command help')
-    command_parser = subparsers.add_parser('ls')
 
-    gh = None
+    for k in commands:
+        parsers[k] = subparsers.add_parser(k)
 
-    commands[sys.argv[1]](parser)
+    # will buy beer for anyone to show me how to do this better.
+    cmd = set(commands.keys()).intersection(sys.argv)
+    if not cmd or len(cmd) > 1:
+        parser.parse_args()
+    else:
+        cmd = cmd.pop()
+        commands[cmd](parser, parsers[cmd])
