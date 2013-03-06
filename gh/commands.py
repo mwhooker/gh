@@ -5,7 +5,6 @@ import ghconfig
 
 def get_github(args):
     config = ghconfig.get_config(args)
-    print "config: ", config
     gh_args = {}
     if 'token' in config:
         gh_args['login_or_token'] = config['token']
@@ -24,7 +23,6 @@ def ls(parser, subparser):
     subparser.add_argument('--org', action='store_true',
                         help="list repos for an org.")
     args = parser.parse_args()
-    print args
 
     gh = get_github(args)
     if args.org:
