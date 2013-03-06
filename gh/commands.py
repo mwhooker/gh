@@ -16,7 +16,7 @@ def get_github(args):
 
 def ls(parser, subparser):
     """ls <repo>
-    
+
     TODO: flags for controlling output
     """
 
