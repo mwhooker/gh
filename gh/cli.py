@@ -1,8 +1,5 @@
 import argparse
-import os
 import sys
-
-from github import Github
 
 import commands
 
@@ -23,16 +20,12 @@ TODO:
 """
 
 if __name__ == '__main__':
-    assert len(sys.argv) > 1
 
-    base_url = os.getenv('GH_BASE_URL')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--token')
+    subparsers = parser.add_subparsers(help='sub-command help')
+    command_parser = subparsers.add_parser('ls')
 
-    if base_url:
-        gh = Github(base_url=base_url)
-    else:
-        gh = Github()
-    cmd = sys.argv[1]
+    gh = None
 
-    parser = argparse.ArgumentParser(description='cmd')
-
-    commands[cmd](gh, parser, sys.argv[2:])
+    commands[sys.argv[1]](parser)

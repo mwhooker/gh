@@ -5,7 +5,8 @@ VERSION = '0.0.1'
 NAME = 'gh'
 
 install_requires = [
-    'PyGithub'
+    'PyGithub',
+    'argparse'
 ]
 
 

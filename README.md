@@ -15,6 +15,6 @@ return list of repositories for `user`
 Environment
 ==
 
-GH_URL
+GH_BASE_URL
 
 defaults to github.com. override for enterprise installs.
